@@ -162,3 +162,57 @@ fetch('url',{
     console.info('报错');
 });
 ```
+
+##### 预览本地图片
+```bash
+$("#fileupload").unbind().bind("change",function(){
+    var file = this.files[0] || null;
+	console.info(file);
+	if(file){
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(e){
+            $("#fileuploadImg").attr("src",this.result);
+        }
+    }
+});
+```
+
+##### Base64加解密
+```bash
+window.btoa("test");                                                                   # 加密                                                                                                                                                                            
+window.atob("dGVzdA==");                                                               # 解密
+
+var str = "China，中国";
+window.btoa(window.encodeURIComponent(str))
+
+window.decodeURIComponent(window.atob('Q2hpbmElRUYlQkMlOEMlRTQlQjglQUQlRTUlOUIlQkQ='))
+```
+
+##### 正则表达式记录
+```bash
+//获取域名
+var durl=/(http:\/\/[^\/]+\/)/i;
+var domain = manageUrl.match(durl)[1];
+//开头
+if (!/(https|http)?:\/\//.test(img)) {}
+```
+
+##### setInterval 和 setTimeout 区别
+```bash
+相同点：当代码执行到,定时函数<setInterval或setTimeout>时，会在当前代码执行栈，以外为定时函数创建独立的代码执行栈，并在其内创建一个执行队列。
+不同点：setTimeout：在指定延时后，会往执行队列里面加入回调函数，且只加入一次<就是只调用一次>
+                   <注：每次调用setTimeout都会往队列里面加入回调，如果队列里面有，未执行完成的回调，需等待执行完成才执行下一个回调>
+       setInterval：在间隔延迟时间后，不断的往队列里面加入回调，<如果上一个回调还未执行完成，将不会加入回调>
+总结：setTimeout只执行一次；setInterval 循环执行。
+```
+
+##### js视频流采集几个重要的API
+```bash
+https://addpipe.com/blog/mediarecorder-api/                                    # 列子
+https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia        # navigator的getUserMedia
+https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API     # MediaRecorder
+https://developer.mozilla.org/en-US/docs/Web/API/FileReader                    # FileReader
+https://developer.mozilla.org/en-US/docs/Web/API/Blob                          # Blob
+```
+
